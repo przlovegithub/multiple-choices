@@ -163,8 +163,7 @@ export default {
 		//初始化信息
         // this.initializeData();
         this.INITIALIZE_DATA();
-        this.REMBER_TIME();
-        
+        this.REMBER_TIME();    
     },
     mounted(){
         // this.REMBER_ANSWER(this.$route.query);
