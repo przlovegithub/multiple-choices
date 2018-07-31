@@ -1,9 +1,9 @@
 import axios from 'axios';
 import qs from 'qs';
-import store from '../store'; //此处引入是为了loading效果
+// import store from '../store'; //此处引入是为了loading效果
 import router from '../router'; //此处引入是为了跳转到登录
 import { baseUrl } from './env'; //此处引入是判断是在开发环境还是生产环境
-
+import { showFullScreenLoading, tryHideFullScreenLoading } from './requestLoading' //此处引入是为了loading效果
 // 全局默认配置
 // 授权认证
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
@@ -49,15 +49,18 @@ let instance = axios.create({
 
 // Add a request interceptor
 instance.interceptors.request.use(function(config) {
+    if (config.showLoading) {
+        showFullScreenLoading()
+    }
     // Do something before request is sent
-    store.dispatch( //请求前触发loading效果
-            'controlLoading', {
-                status: true,
-                theme: 'dark',
-                size: '',
-                text: '加载中...'
-            })
-        // POST 请求参数处理成 axios post 方法所需的格式        
+    // store.dispatch( //请求前触发loading效果
+    //         'controlLoading', {
+    //             status: true,
+    //             theme: 'dark',
+    //             size: '',
+    //             text: '加载中...'
+    //         })
+    // POST 请求参数处理成 axios post 方法所需的格式        
     if (config.method === 'post' || config.method === "put" || config.method === "delete") {
         config.data = JSON.stringify(config.data);
     }
@@ -71,31 +74,46 @@ instance.interceptors.request.use(function(config) {
     }
     return config;
 }, function(error) {
+    tryHideFullScreenLoading();
     // Do something with request error
-    store.dispatch(
-        'controlLoading', {
-            status: false,
-        })
+    // store.dispatch(
+    //     'controlLoading', {
+    //         status: false,
+    //     })
     return Promise.reject(error);
 });
 
 // Add a response interceptor
 instance.interceptors.response.use(function(response) {
+    if (response.config.showLoading) {
+        tryHideFullScreenLoading()
+    }
     // Do something with response data
-    store.dispatch( //请求后关闭loading效果
-        'controlLoading', {
-            status: false,
-        })
+    // store.dispatch( //请求后关闭loading效果
+    //     'controlLoading', {
+    //         status: false,
+    //     })
     return response.data;
 }, function(error) {
+    tryHideFullScreenLoading();
     // Do something with response error
-    store.dispatch(
-        'controlLoading', {
-            status: false,
-        })
+    // store.dispatch(
+    //     'controlLoading', {
+    //         status: false,
+    //     })
     return Promise.reject(error);
 });
 
 
 
-export { instance };
+// export { instance };
+
+// 用于配置请求是否显示loading效果
+const defaultConfig = { showLoading: true }
+export default {
+    get: (url, config) => instance.get(url, {...defaultConfig, ...config }),
+    put: (url, data, config) => instance.put(url, data, {...defaultConfig, ...config }),
+    post: (url, data, config) => instance.post(url, data, {...defaultConfig, ...config }),
+    patch: (url, data, config) => instance.patch(url, data, {...defaultConfig, ...config }),
+    delete: (url, data, config) => instance.delete(url, {...defaultConfig, ...config })
+}

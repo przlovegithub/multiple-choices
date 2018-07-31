@@ -1,5 +1,5 @@
-import { instance } from './apiConfig';
+import ajax from './apiConfig';
 
 export const questionnaireSubmit = (data) => {
-    return instance.post('', data)
+    return ajax.post('', data, { showLoading: true })
 };
