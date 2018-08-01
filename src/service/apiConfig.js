@@ -1,5 +1,5 @@
-import axios from 'axios';
-import qs from 'qs';
+// import axios from 'axios';
+// import qs from 'qs';
 // import store from '../store'; //此处引入是为了loading效果
 import router from '../router'; //此处引入是为了跳转到登录
 import { baseUrl } from './env'; //此处引入是判断是在开发环境还是生产环境
