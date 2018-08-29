@@ -9,11 +9,10 @@ let baseUrl = '';
 
 if (process.env.NODE_ENV == 'development') {
     console.log("this is development")
-        // baseUrl = 'http://test.mazdamall.cn:84/mazdaapp/';
-    baseUrl = '';
+    baseUrl = 'http://appfwb.faw-mazda.com/';
 } else if (process.env.NODE_ENV == 'production') {
     console.log("this is production")
-    baseUrl = '';
+    baseUrl = 'http://appfwb.faw-mazda.com/';
 }
 
 export {

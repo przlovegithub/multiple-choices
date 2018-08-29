@@ -20,7 +20,8 @@ const state = {
     timer: '', //定时器
     showPopup: false, //弹窗
     popupText: '', //弹窗内容
-
+    userinfo: {}, //登录信息
+    isLogin: '', //是否已登录
     itemDetail: [{
         "type": "question1",
         "question_name": "1.《百家姓》中没有哪个姓",

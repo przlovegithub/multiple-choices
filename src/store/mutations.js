@@ -5,7 +5,8 @@ import {
     REMBER_TIME,
     INITIALIZE_DATA,
     SET_TIME,
-    SHOW_POPUP
+    SHOW_POPUP,
+    GETUSERINFO
 } from './mutation-types'
 
 
@@ -48,7 +49,10 @@ export default {
     [SHOW_POPUP](state, text) {
         state.showPopup = !state.showPopup;
         state.popupText = text;
-
+    },
+    [GETUSERINFO](state, { info, isLogin }) {
+        state.userinfo = info;
+        state.isLogin = isLogin;
     }
 
 

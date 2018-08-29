@@ -1,5 +1,5 @@
 // import axios from 'axios';
-// import qs from 'qs';
+import qs from 'qs';
 // import store from '../store'; //此处引入是为了loading效果
 import router from '../router'; //此处引入是为了跳转到登录
 import { baseUrl } from './env'; //此处引入是判断是在开发环境还是生产环境
@@ -38,7 +38,7 @@ axios.defaults.timeout = 40000;
 // 创建axios实例
 let instance = axios.create({
     baseURL: baseUrl,
-    headers: { 'Content-Type': 'application/json' },
+    // headers: { 'Content-Type': 'application/json' },
     timeout: 10000,
     withCredentials: true,
     // transformRequest: [(data) => {//可在axios实例中设置，也可在拦截器中设置
@@ -62,7 +62,7 @@ instance.interceptors.request.use(function(config) {
     //         })
     // POST 请求参数处理成 axios post 方法所需的格式        
     if (config.method === 'post' || config.method === "put" || config.method === "delete") {
-        config.data = JSON.stringify(config.data);
+        // config.data = JSON.stringify(config.data);
     }
     // 若是有做鉴权token , 就给头部带上token
     // if (localStorage.AUTH_TOKEN) {

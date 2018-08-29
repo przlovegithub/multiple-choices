@@ -20,7 +20,7 @@ module.exports = {
         "element-ui": "ELEMENT",
         "vue-router": "VueRouter",
         "vuex": "Vuex",
-        "qs": "qs",
+        // "qs": "qs",
         "axios": "axios",
         "jquery": "$",
     },

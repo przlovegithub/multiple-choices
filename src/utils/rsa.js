@@ -1,0 +1,14 @@
+import JSEncrypt from 'jsencrypt/bin/jsencrypt.min'
+let rsa = new JSEncrypt();
+//rsa加密
+window.encrypt = (data) => {
+    rsa.setPublicKey('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDRlw1809ZrYQ3lLNJzT5Y8QzsOGMKkHcotkhtS9mjo2KA87srCWuwbZl+sml9DaUhqLv7SY0yLCQG1duUA/xDzN+kUpjsuKS/8KQHsODSsH8UNqJAthHgshfNmtBXC5eBZkwK2/cpw4MBGYrq50y8cf0Hg1Tcj1p9wGDg/KgBgmwIDAQAB');
+    return rsa.encrypt(data);
+}
+
+
+//rsa解密
+window.decrypt = (data) => {
+    rsa.setPrivateKey('MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANDzJHo3vsD3DZvGy9K4A72JexmqhZZEzLFwzphpIGlB8UGmR/BSUXEpx5C+AyONbcQ9Uy7LfZ+Cc1Mtl1gBxv31UeuX0g1aqR/AM0y7DfGEaT9txLsWRC+lR6oeEEmNQ///PzG6XgZOTroQAI/eZUtIbcupT6gyKObJBz6CcWoJAgMBAAECgYBZyB/kZA+S2pT+Wm06Hdd9mZVLcfn0l5tcoxwiYQmMMMl5a/l9SeG0vj8B8qNmo16G89LKSKWx5FupYe2l4x2dOlcFbWeFzinbAvwRW55uZWTxF1x4/d9G2ILfxmpmlEMPAlH2nFqbhBteeDTF0OLegrQytMt2HeHOmTqMTgMAAQJBAPuDW41A/RSQsbFG6rBKy+Y6KOVd+TBiXiltZecOwozLZzd1qY3nrMkdmVa2YuBEW6eZIjBLNeZbg1YouJvcI8ECQQDUrWaxI8xLevb1sgQnazOL+MZGiFqtOaFEfdPW6dh38nU9mLk1CHXACdTo0uvHEWC9wGUG/2bdnwU9QkErGThJAkBsi9hrMe0HfxrxI2YOB3nQNrGHq/LrisiQoIImIhycnvxA1ysB70aG1Ztj7PrnRxk3T8ONjCgK7tvTx2dE/NEBAkEAsScXSSpme+EbYSE9cJBNSaSZlBr0XSKKAIFHOddj5tXhbsOOUmyPmL0XyjAXEaSaDrT58lBAIQ7a0GIl4n6JcQJAHDoxaKygZFrITGDpkHbB3fhd916V+iMgNQ0TN7yrvebmRN3S/p3cwskfksJEPwQCkfHh7n3V0LaB7obww98/1Q==');
+    return rsa.decrypt(data);
+}
